@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const FlexContainer = styled.div`
     display: flex;
-    align-items: center;
+    align-items: stretch;
     align-content: stretch;
     justify-content: center;
     width: 100%;
