@@ -1,23 +1,11 @@
 {
   "name": "vcard-qr",
-  "version": "1.0.0",
-  "description": "",
   "scripts": {
     "start": "webpack serve --mode development --env=development",
     "build": "webpack --mode production --env=production",
     "eslint": "eslint --ext .js,.jsx .",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/farrah-deriv/vcard-qr.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/farrah-deriv/vcard-qr/issues"
-  },
-  "homepage": "https://github.com/farrah-deriv/vcard-qr#readme",
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
