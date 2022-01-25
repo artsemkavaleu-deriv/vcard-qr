@@ -6,6 +6,7 @@
     "eslint": "eslint --ext .js,.jsx .",
     "test": "jest"
   },
+   "homepage": ".",
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
