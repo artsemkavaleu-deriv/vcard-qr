@@ -56,9 +56,9 @@ const App = () => {
         fetch(url, {})
             .then(response => response.blob())
             .then(blob => URL.createObjectURL(blob))
-            .then(url => {
+            .then(href => {
                 const tag = document.createElement('a');
-                tag.href = url;
+                tag.href = href;
                 tag.download = fileName;
                 document.body.appendChild(tag);
                 tag.click();
@@ -70,7 +70,7 @@ const App = () => {
         setFormState({ ...form_state, [e.target.name]: e.target.value });
     };
 
-    let vCard = vCardsJS();
+    const vCard = vCardsJS();
     vCard.firstName = form_state.firstName;
     vCard.middleName = form_state.middleName;
     vCard.lastName = form_state.lastName;
@@ -86,9 +86,9 @@ const App = () => {
     vCard.homeAddress.countryRegion = form_state.countryRegion;
     vCard.url = form_state.url;
 
-    let vCardString = vCard.getFormattedString();
-    let vCardEncodedString = encodeURIComponent(vCardString);
-    let qrCodeUrl = `https://chart.googleapis.com/chart?chs=300x300&choe=UTF-8&chld=M|0&cht=qr&chl=${vCardEncodedString}`;
+    const vCardString = vCard.getFormattedString();
+    const vCardEncodedString = encodeURIComponent(vCardString);
+    const qrCodeUrl = `https://chart.googleapis.com/chart?chs=300x300&choe=UTF-8&chld=M|0&cht=qr&chl=${vCardEncodedString}`;
 
     return (
         <div>
@@ -97,101 +97,101 @@ const App = () => {
                 <div>
                     <StyledDiv>
                         <input
-                            className="form-control"
-                            type="text"
-                            name="firstName"
-                            placeholder="First name"
+                            className='form-control'
+                            type='text'
+                            name='firstName'
+                            placeholder='First name'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="middleName"
-                            placeholder="Middle name"
+                            className='form-control'
+                            type='text'
+                            name='middleName'
+                            placeholder='Middle name'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="lastName"
-                            placeholder="Last name"
+                            className='form-control'
+                            type='text'
+                            name='lastName'
+                            placeholder='Last name'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="homePhone"
-                            placeholder="Mobile Phone"
+                            className='form-control'
+                            type='text'
+                            name='homePhone'
+                            placeholder='Mobile Phone'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="workPhone"
-                            placeholder="Work Phone"
+                            className='form-control'
+                            type='text'
+                            name='workPhone'
+                            placeholder='Work Phone'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="workFax"
-                            placeholder="Work Fax"
+                            className='form-control'
+                            type='text'
+                            name='workFax'
+                            placeholder='Work Fax'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="email"
-                            placeholder="Email"
+                            className='form-control'
+                            type='text'
+                            name='email'
+                            placeholder='Email'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="organization"
-                            placeholder="Organization"
+                            className='form-control'
+                            type='text'
+                            name='organization'
+                            placeholder='Organization'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="street"
-                            placeholder="Home Adress"
+                            className='form-control'
+                            type='text'
+                            name='street'
+                            placeholder='Home Adress'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="postalCode"
-                            placeholder="Postal Code"
+                            className='form-control'
+                            type='text'
+                            name='postalCode'
+                            placeholder='Postal Code'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="postalCode"
-                            placeholder="Postal Code"
+                            className='form-control'
+                            type='text'
+                            name='postalCode'
+                            placeholder='Postal Code'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="stateProvince"
-                            placeholder="State Province"
+                            className='form-control'
+                            type='text'
+                            name='stateProvince'
+                            placeholder='State Province'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="countryRegion"
-                            placeholder="Country Region"
+                            className='form-control'
+                            type='text'
+                            name='countryRegion'
+                            placeholder='Country Region'
                             onKeyUp={handleTextChange}
                         />
                         <input
-                            className="form-control"
-                            type="text"
-                            name="url"
-                            placeholder="Website"
+                            className='form-control'
+                            type='text'
+                            name='url'
+                            placeholder='Website'
                             onKeyUp={handleTextChange}
                         />
                     </StyledDiv>
@@ -199,7 +199,7 @@ const App = () => {
                         Download the QRCode
                     </StyledButton>
                 </div>
-                <StyledImg src={qrCodeUrl} alt="generated-qr-code" />
+                <StyledImg src={qrCodeUrl} alt='generated-qr-code' />
             </FlexContainer>
         </div>
     );
