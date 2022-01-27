@@ -18,9 +18,6 @@ module.exports = {
             fs: false,
         },
     },
-    devServer: {
-        static: './build',
-    },
     module: {
         rules: [
             {
@@ -37,7 +34,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve('./public/index.html'),
+            template: './public/index.html',
+            filename: 'index.html',
+            inject: 'body',
         }),
     ],
 };
