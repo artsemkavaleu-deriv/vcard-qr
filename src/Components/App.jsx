@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react';
 import QRCode from 'qrcode.react';
 import { Formik } from 'formik';
-import { formatVCard, getBase64 } from '../Utils/helper.js';
+import { formatVCard } from '../Utils/helper.js';
 import {
     Card,
     FlexContainer,
-    StyledButton,
     CardSection,
     CardPhoto,
     Buttons,
@@ -14,8 +13,8 @@ import {
     Form,
     CardName,
     CardTitle,
-    StyledLogo,
 } from './Style';
+import Colors from './Colors';
 import logo from '../Assets/logo.png';
 
 const App = () => {
@@ -261,16 +260,14 @@ const App = () => {
                             />
                         )}
                     </CardSection>
-                    {/* {
-                            <Buttons>
-                                <ToggleButton onClick={toggling1}>Frames</ToggleButton>
-                                {isOpen.isFrameFieldOpen && 'Frames'}
-                                <ToggleButton onClick={toggling2}>Colors</ToggleButton>
-                                {isOpen.isColorFieldOpen && 'Colors'}
-                                <ToggleButton onClick={toggling3}>Logo</ToggleButton>
-                                {isOpen.isLogoFieldOpen && 'Logo'}
-                            </Buttons>
-                        } */}
+                    <Buttons>
+                        <ToggleButton onClick={toggling1}>Frames</ToggleButton>
+                        {isOpen.isFrameFieldOpen && 'Frames'}
+                        <ToggleButton onClick={toggling2}>Colors</ToggleButton>
+                        {isOpen.isColorFieldOpen && <Colors vCardString={qr_code} />}
+                        <ToggleButton onClick={toggling3}>Logo</ToggleButton>
+                        {isOpen.isLogoFieldOpen && 'Logo'}
+                    </Buttons>
                 </Card>
             </FlexContainer>
         </div>

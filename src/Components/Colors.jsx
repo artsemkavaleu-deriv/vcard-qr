@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { QRCode } from 'react-qr-svg';
+import QRCode from 'qrcode.react';
 import PropTypes from 'prop-types';
 
 const ChooseColorIcon = styled.div``;
