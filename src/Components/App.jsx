@@ -14,7 +14,7 @@ import {
     CardName,
     CardTitle,
 } from './Style';
-import Colors from './Colors';
+import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from './Colors';
 import logo from '../Assets/logo.png';
 
 const App = () => {
@@ -31,6 +31,8 @@ const App = () => {
     const toggling1 = () => setIsOpen({ isFrameFieldOpen: !isOpen.isFrameFieldOpen });
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
+
+    const [choosenColor, setChoosenColor] = useState('#080808');
 
     const validateFields = values => {
         const errors = {};
@@ -50,7 +52,7 @@ const App = () => {
     };
 
     const onPhotoChange = e => {
-        const files = e.target.files;
+        const { files } = e.target;
         const file = files[0];
         const reader = new FileReader();
 
@@ -66,7 +68,7 @@ const App = () => {
         const middleName = ref?.current?.values.middleName || '';
         const lastName = ref?.current?.values.lastName || '';
 
-        return firstName.toUpperCase() + ' ' + middleName.toUpperCase() + ' ' + lastName.toUpperCase();
+        return `${firstName.toUpperCase()} ${middleName.toUpperCase()} ${lastName.toUpperCase()}`;
     };
 
     return (
@@ -251,6 +253,7 @@ const App = () => {
                                 value={qr_code}
                                 size={250}
                                 bgColor='white'
+                                fgColor={choosenColor}
                                 imageSettings={{
                                     src: logo,
                                     excavate: true,
@@ -264,7 +267,15 @@ const App = () => {
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
-                        {isOpen.isColorFieldOpen && <Colors vCardString={qr_code} />}
+                        {isOpen.isColorFieldOpen && (
+                            <div>
+                                <BlackButton onClick={() => setChoosenColor('#080808')} />
+                                <RedButton onClick={() => setChoosenColor('#f72a31')} />
+                                <GreenButton onClick={() => setChoosenColor('#1ef730')} />
+                                <BlueButton onClick={() => setChoosenColor('#1e33f7')} />
+                                <OrangeButton onClick={() => setChoosenColor('#fa9716')} />
+                            </div>
+                        )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
                         {isOpen.isLogoFieldOpen && 'Logo'}
                     </Buttons>

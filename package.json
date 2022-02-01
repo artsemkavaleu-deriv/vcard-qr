@@ -35,6 +35,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^2.1.1",
     "file-loader": "^6.2.0",
     "formik": "^2.2.9",
     "qrcode.react": "^1.0.1",
