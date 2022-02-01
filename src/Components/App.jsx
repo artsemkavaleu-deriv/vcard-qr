@@ -54,7 +54,7 @@ const App = () => {
     };
 
     const onPhotoChange = e => {
-        const { files } = e.target.files;
+        const files = e.target.files;
         const file = files[0];
         const reader = new FileReader();
 
