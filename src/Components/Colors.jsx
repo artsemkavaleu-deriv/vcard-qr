@@ -1,32 +1,36 @@
 import styled from 'styled-components';
 
 export const BlackButton = styled.button`
-    margin: 5px;
-    width: 20px;
-    height: 20px;
     background: #080808;
+    height: 20px;
+    margin: 5px;
+    width: 20px;
 `;
+
 export const RedButton = styled.button`
-    margin: 5px;
-    width: 20px;
-    height: 20px;
     background: #f72a31;
+    height: 20px;
+    margin: 5px;
+    width: 20px;
 `;
+
 export const GreenButton = styled.button`
-    margin: 5px;
-    width: 20px;
-    height: 20px;
     background: #1ef730;
+    height: 20px;
+    margin: 5px;
+    width: 20px;
 `;
+
 export const BlueButton = styled.button`
-    margin: 5px;
-    width: 20px;
-    height: 20px;
     background: #1e33f7;
-`;
-export const OrangeButton = styled.button`
+    height: 20px;
     margin: 5px;
     width: 20px;
-    height: 20px;
+`;
+
+export const OrangeButton = styled.button`
     background: #fa9716;
+    height: 20px;
+    margin: 5px;
+    width: 20px;
 `;
