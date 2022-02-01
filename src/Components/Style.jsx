@@ -1,25 +1,13 @@
 import styled from 'styled-components';
 
-const FlexContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    width: calc(100% - 10rem);
-    margin: 5rem;
-`;
-
-const StyledButton = styled.button`
-    background-color: #000;
-    font-size: 32px;
-    color: #fff;
-`;
-
-const CardSection = styled.div`
+const Buttons = styled.div`
+    align-content: space-between;
+    align-items: left;
+    background-color: #eee;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem 5rem;
-    background-color: #eee;
+    flex-wrap: nowrap;
+    padding: 5px;
 `;
 
 const Card = styled.div`
@@ -27,63 +15,107 @@ const Card = styled.div`
     border-radius: 6px;
 `;
 
-const CardPhoto = styled.img`
-    width: 150px;
-    height: 150px;
-    margin: auto;
-`;
-
-const Img = styled.div`
+const CardName = styled.div`
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    margin: 1rem 0 2rem;
 `;
 
-const Buttons = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-content: space-between;
-    align-items: left;
-    padding: 5px;
-`;
-
-const ToggleButton = styled.button`
-    height: 40px;
+const CardPhoto = styled.img`
+    height: 150px;
+    margin: auto;
     width: 150px;
-    background: rgba(236, 241, 247, 0.5);
-    border: 1px solid rgba(236, 241, 247, 0.5);
-    border-radius: 5px;
 `;
 
-const Input = styled.input`
-    display: block;
-    padding: 2px 8px;
+const CardSection = styled.div`
+    align-items: center;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 5rem;
+`;
+
+const CardTitle = styled.div`
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    display: flex;
     height: 2rem;
-    width: 90%;
-    margin-bottom: 8px;
+    justify-content: center;
+    padding: 10px;
+`;
+
+const FlexContainer = styled.div`
+    align-items: start;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 1rem;
+    width: calc(100% - 10rem);
 `;
 
 const Form = styled.form`
     width: 50%;
+    display: flex;
+    flex-wrap: wrap;
 `;
 
-const CardName = styled.div`
+const Img = styled.div`
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 1rem 0 2rem;
+    position: relative;
 `;
 
-const CardTitle = styled.div`
-    background-color: #000;
+const Input = styled.input`
+    display: block;
     height: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    color: #fff;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    padding: 2px 8px;
+    width: 40%;
 `;
 
-export { Card, CardName, CardTitle, FlexContainer, CardSection, CardPhoto, Img, Buttons, ToggleButton, Input, Form };
+const StyledButton = styled.button`
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    font-size: 22px;
+    width: 30%;
+`;
+
+const ToggleButton = styled.button`
+    background: rgba(236, 241, 247, 0.5);
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 40px;
+    margin-bottom: 2px;
+    width: 150px;
+`;
+
+const Wrapper = styled.div`
+    background-image: url(https://i.ytimg.com/vi/scUkDeraDu8/maxresdefault.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+`;
+
+export {
+    Buttons,
+    Card,
+    CardName,
+    CardPhoto,
+    CardSection,
+    CardTitle,
+    FlexContainer,
+    Form,
+    Img,
+    Input,
+    StyledButton,
+    ToggleButton,
+    Wrapper,
+};
