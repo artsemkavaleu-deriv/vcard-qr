@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import { CardName, CardPhoto, CardSection, CardTitle, StyledCard } from './Style';
 
-const Card = ({ logo, name, photo, qr_code, choosenColor }) => (
+const Card = ({ color, logo, name, photo, qr_code }) => (
     <StyledCard>
         <CardTitle>vCard</CardTitle>
         <CardSection>
@@ -11,7 +12,7 @@ const Card = ({ logo, name, photo, qr_code, choosenColor }) => (
             {qr_code && (
                 <QRCode
                     bgColor='white'
-                    fgColor={choosenColor}
+                    fgColor={color}
                     imageSettings={{
                         src: logo,
                         excavate: true,
@@ -25,5 +26,21 @@ const Card = ({ logo, name, photo, qr_code, choosenColor }) => (
         </CardSection>
     </StyledCard>
 );
+
+Card.defaultProps = {
+    color: '',
+    logo: '',
+    name: '',
+    photo: '',
+    qr_code: '',
+};
+
+Card.propTypes = {
+    color: PropTypes.string,
+    logo: PropTypes.string,
+    name: PropTypes.string,
+    photo: PropTypes.string,
+    qr_code: PropTypes.string,
+};
 
 export default Card;

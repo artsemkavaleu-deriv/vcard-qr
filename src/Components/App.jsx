@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
 import logo from '../Assets/logo.png';
-import { formatVCard } from '../Utils/helper';
+import formatVCard from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
@@ -39,7 +39,7 @@ const App = () => {
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
 
-    const [choosenColor, setChoosenColor] = useState('#080808');
+    const [color, setColor] = useState('#080808');
 
     const validateFields = values => {
         const errors = {};
@@ -270,13 +270,7 @@ const App = () => {
                         )}
                     </Formik>
                     <div ref={componentRef}>
-                        <Card
-                            logo={logo_src}
-                            name={getFullName()}
-                            photo={photo_src}
-                            qr_code={qr_code}
-                            choosenColor={choosenColor}
-                        />
+                        <Card logo={logo_src} name={getFullName()} photo={photo_src} qr_code={qr_code} color={color} />
                     </div>
                     <DownloadButtonsWrapper>
                         <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
@@ -290,11 +284,11 @@ const App = () => {
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
                         {isOpen.isColorFieldOpen && (
                             <div>
-                                <BlackButton onClick={() => setChoosenColor('#080808')} />
-                                <RedButton onClick={() => setChoosenColor('#f72a31')} />
-                                <GreenButton onClick={() => setChoosenColor('#1ef730')} />
-                                <BlueButton onClick={() => setChoosenColor('#1e33f7')} />
-                                <OrangeButton onClick={() => setChoosenColor('#fa9716')} />
+                                <BlackButton onClick={() => setColor('#080808')} />
+                                <RedButton onClick={() => setColor('#f72a31')} />
+                                <GreenButton onClick={() => setColor('#1ef730')} />
+                                <BlueButton onClick={() => setColor('#1e33f7')} />
+                                <OrangeButton onClick={() => setColor('#fa9716')} />
                             </div>
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
