@@ -1,4 +1,12 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #000;
+  }
+`;
 
 const Buttons = styled.div`
     align-content: space-between;
@@ -10,7 +18,7 @@ const Buttons = styled.div`
     padding: 5px;
 `;
 
-const Card = styled.div`
+const StyledCard = styled.div`
     border: 3px solid #515151;
     border-radius: 6px;
 `;
@@ -59,6 +67,10 @@ const Form = styled.form`
     width: 50%;
     display: flex;
     flex-wrap: wrap;
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 4px;
 `;
 
 const Img = styled.div`
@@ -74,16 +86,17 @@ const Input = styled.input`
     margin-bottom: 8px;
     margin-left: 5px;
     padding: 2px 8px;
-    width: 40%;
+    width: 45%;
 `;
 
 const StyledButton = styled.button`
-    background-color: black;
-    border: 2px solid red;
-    border-radius: 5px;
-    color: red;
+    background-color: #ff444f;
+    border: 2px solid #ff444f;
+    border-radius: 4px;
+    color: #fff;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 14px;
+    padding: 10px 16px;
     width: 30%;
 `;
 
@@ -100,13 +113,13 @@ const ToggleButton = styled.button`
 const Wrapper = styled.div`
     background-image: url(https://i.ytimg.com/vi/scUkDeraDu8/maxresdefault.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     width: 100%;
 `;
 
 export {
+    GlobalStyle,
     Buttons,
-    Card,
     CardName,
     CardPhoto,
     CardSection,
@@ -116,6 +129,7 @@ export {
     Img,
     Input,
     StyledButton,
+    StyledCard,
     ToggleButton,
     Wrapper,
 };

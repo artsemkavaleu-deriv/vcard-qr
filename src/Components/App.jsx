@@ -1,25 +1,11 @@
 import React, { useRef, useState } from 'react';
-import QRCode from 'qrcode.react';
 import { Formik } from 'formik';
 import { formatVCard } from '../Utils/helper';
-import {
-    Buttons,
-    Card,
-    CardName,
-    CardPhoto,
-    CardSection,
-    CardTitle,
-    FlexContainer,
-    Form,
-    Input,
-    StyledButton,
-    ToggleButton,
-    Wrapper,
-} from './Style';
+import { Buttons, FlexContainer, Form, GlobalStyle, Input, StyledButton, ToggleButton, Wrapper } from './Style';
+import Card from './Card';
 import Colors from './Colors';
 import Footer from './Footer';
 import Header from './Header';
-import logo from '../Assets/logo.png';
 
 const App = () => {
     const ref = useRef(null);
@@ -75,6 +61,7 @@ const App = () => {
 
     return (
         <div>
+            <GlobalStyle />
             <Wrapper>
                 <Header />
                 <FlexContainer>
@@ -100,6 +87,7 @@ const App = () => {
                     >
                         {({ errors, handleChange, touched, values }) => (
                             <Form>
+                                <h2 style={{ width: '100%' }}>Create your vCard</h2>
                                 <Input
                                     type='text'
                                     name='firstName'
@@ -247,26 +235,7 @@ const App = () => {
                             </Form>
                         )}
                     </Formik>
-                    <Card>
-                        <CardTitle>vCard</CardTitle>
-                        <CardSection>
-                            <CardPhoto src={photo_src} />
-                            <CardName>{getFullName()}</CardName>
-                            {qr_code && (
-                                <QRCode
-                                    bgColor='white'
-                                    imageSettings={{
-                                        src: logo,
-                                        excavate: true,
-                                        height: 40,
-                                        width: 40,
-                                    }}
-                                    size={200}
-                                    value={qr_code}
-                                />
-                            )}
-                        </CardSection>
-                    </Card>
+                    <Card name={getFullName()} qr_code={qr_code} src={photo_src} />
                     <Buttons>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
@@ -278,8 +247,8 @@ const App = () => {
                         {isOpen.isLogoFieldOpen && 'Logo'}
                     </Buttons>
                 </FlexContainer>
+                <Footer />
             </Wrapper>
-            <Footer />
         </div>
     );
 };
