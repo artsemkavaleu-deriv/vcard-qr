@@ -1,9 +1,12 @@
 import React, { useRef, useState } from 'react';
 import QRCode from 'qrcode.react';
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
+import logo from '../Assets/logo.png';
 import { formatVCard } from '../Utils/helper';
 import {
-    Buttons,
+    ColoredButtonsWrapper,
+    DownloadButtonsWrapper,
     Card,
     CardName,
     CardPhoto,
@@ -13,16 +16,17 @@ import {
     Form,
     Input,
     StyledButton,
+    DownloadButton,
     ToggleButton,
     Wrapper,
 } from './Style';
 import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from './Colors';
 import Footer from './Footer';
 import Header from './Header';
-import logo from '../Assets/logo.png';
 
 const App = () => {
     const ref = useRef(null);
+    const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(null);
@@ -249,28 +253,35 @@ const App = () => {
                             </Form>
                         )}
                     </Formik>
-                    <Card>
-                        <CardTitle>vCard</CardTitle>
-                        <CardSection>
-                            <CardPhoto src={photo_src} />
-                            <CardName>{getFullName()}</CardName>
-                            {qr_code && (
-                                <QRCode
-                                    bgColor='white'
-                                    fgColor={choosenColor}
-                                    imageSettings={{
-                                        src: logo,
-                                        excavate: true,
-                                        height: 40,
-                                        width: 40,
-                                    }}
-                                    size={200}
-                                    value={qr_code}
-                                />
-                            )}
-                        </CardSection>
-                    </Card>
-                    <Buttons>
+                    <div ref={componentRef}>
+                        <Card>
+                            <CardTitle>vCard</CardTitle>
+                            <CardSection>
+                                <CardPhoto src={photo_src} />
+                                <CardName>{getFullName()}</CardName>
+                                {qr_code && (
+                                    <QRCode
+                                        bgColor='white'
+                                        fgColor={choosenColor}
+                                        imageSettings={{
+                                            src: logo,
+                                            excavate: true,
+                                            height: 40,
+                                            width: 40,
+                                        }}
+                                        size={200}
+                                        value={qr_code}
+                                    />
+                                )}
+                            </CardSection>
+                        </Card>
+                    </div>
+                    <DownloadButtonsWrapper>
+                        <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
+                        <DownloadButton onClick={() => exportComponentAsPDF(componentRef)}>PDF</DownloadButton>
+                        <DownloadButton onClick={() => exportComponentAsPNG(componentRef)}>PNG</DownloadButton>
+                    </DownloadButtonsWrapper>
+                    <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
 
@@ -286,7 +297,7 @@ const App = () => {
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
                         {isOpen.isLogoFieldOpen && 'Logo'}
-                    </Buttons>
+                    </ColoredButtonsWrapper>
                 </FlexContainer>
             </Wrapper>
             <Footer />

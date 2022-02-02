@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Buttons = styled.div`
+const ColoredButtonsWrapper = styled.div`
     align-content: space-between;
     align-items: left;
     background-color: #eee;
@@ -8,6 +8,14 @@ const Buttons = styled.div`
     flex-direction: column;
     flex-wrap: nowrap;
     padding: 5px;
+`;
+
+const DownloadButtonsWrapper = styled.div`
+    align-content: space-between;
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 `;
 
 const Card = styled.div`
@@ -87,6 +95,16 @@ const StyledButton = styled.button`
     width: 30%;
 `;
 
+const DownloadButton = styled.button`
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    font-size: 22px;
+    width: 100%;
+`;
+
 const ToggleButton = styled.button`
     background: rgba(236, 241, 247, 0.5);
     border: 1px solid gray;
@@ -105,7 +123,8 @@ const Wrapper = styled.div`
 `;
 
 export {
-    Buttons,
+    ColoredButtonsWrapper,
+    DownloadButtonsWrapper,
     Card,
     CardName,
     CardPhoto,
@@ -116,6 +135,7 @@ export {
     Img,
     Input,
     StyledButton,
+    DownloadButton,
     ToggleButton,
     Wrapper,
 };
