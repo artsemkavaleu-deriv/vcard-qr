@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import QRCode from 'qrcode.react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
 import logo from '../Assets/logo.png';
@@ -7,20 +6,19 @@ import { formatVCard } from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
-    Card,
-    CardName,
-    CardPhoto,
-    CardSection,
-    CardTitle,
     FlexContainer,
     Form,
+    GlobalStyle,
+    H2,
     Input,
+    InputLabel,
     StyledButton,
     DownloadButton,
     ToggleButton,
     Wrapper,
 } from './Style';
 import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from './Colors';
+import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -30,6 +28,7 @@ const App = () => {
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(null);
+    const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
         isFrameFieldOpen: false,
         isColorFieldOpen: false,
@@ -71,6 +70,18 @@ const App = () => {
         };
     };
 
+    const onLogoChange = e => {
+        const files = e.target.files;
+        const file = files[0];
+
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setLogoSrc(reader.result);
+        };
+    };
+
     const getFullName = () => {
         const firstName = ref?.current?.values.firstName || '';
         const middleName = ref?.current?.values.middleName || '';
@@ -81,6 +92,7 @@ const App = () => {
 
     return (
         <div>
+            <GlobalStyle />
             <Wrapper>
                 <Header />
                 <FlexContainer>
@@ -106,6 +118,7 @@ const App = () => {
                     >
                         {({ errors, handleChange, touched, values }) => (
                             <Form>
+                                <H2>Create your vCard</H2>
                                 <Input
                                     type='text'
                                     name='firstName'
@@ -236,17 +249,20 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='file'
-                                    name='photo'
-                                    error={touched.photo && errors.photo}
-                                    value={values.photo}
-                                    placeholder='Photo'
-                                    onChange={e => {
-                                        handleChange(e);
-                                        onPhotoChange(e);
-                                    }}
-                                />
+                                <InputLabel>
+                                    <input
+                                        type='file'
+                                        name='photo'
+                                        error={touched.photo && errors.photo}
+                                        value={values.photo}
+                                        placeholder='Photo'
+                                        onChange={e => {
+                                            handleChange(e);
+                                            onPhotoChange(e);
+                                        }}
+                                    />
+                                    Upload your photo
+                                </InputLabel>
                                 <StyledButton type='button' onClick={() => generateQRCode(values)}>
                                     Generate
                                 </StyledButton>
@@ -254,27 +270,13 @@ const App = () => {
                         )}
                     </Formik>
                     <div ref={componentRef}>
-                        <Card>
-                            <CardTitle>vCard</CardTitle>
-                            <CardSection>
-                                <CardPhoto src={photo_src} />
-                                <CardName>{getFullName()}</CardName>
-                                {qr_code && (
-                                    <QRCode
-                                        bgColor='white'
-                                        fgColor={choosenColor}
-                                        imageSettings={{
-                                            src: logo,
-                                            excavate: true,
-                                            height: 40,
-                                            width: 40,
-                                        }}
-                                        size={200}
-                                        value={qr_code}
-                                    />
-                                )}
-                            </CardSection>
-                        </Card>
+                        <Card
+                            logo={logo_src}
+                            name={getFullName()}
+                            photo={photo_src}
+                            qr_code={qr_code}
+                            choosenColor={choosenColor}
+                        />
                     </div>
                     <DownloadButtonsWrapper>
                         <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
@@ -296,11 +298,10 @@ const App = () => {
                             </div>
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
-                        {isOpen.isLogoFieldOpen && 'Logo'}
                     </ColoredButtonsWrapper>
                 </FlexContainer>
+                <Footer />
             </Wrapper>
-            <Footer />
         </div>
     );
 };

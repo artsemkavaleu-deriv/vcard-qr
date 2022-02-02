@@ -1,4 +1,12 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #000;
+  }
+`;
 
 const ColoredButtonsWrapper = styled.div`
     align-content: space-between;
@@ -18,9 +26,10 @@ const DownloadButtonsWrapper = styled.div`
     flex-wrap: nowrap;
 `;
 
-const Card = styled.div`
+const StyledCard = styled.div`
     border: 3px solid #515151;
     border-radius: 6px;
+    margin-right: 40px;
 `;
 
 const CardName = styled.div`
@@ -65,8 +74,13 @@ const FlexContainer = styled.div`
 
 const Form = styled.form`
     width: 50%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.6rem;
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 4px;
 `;
 
 const Img = styled.div`
@@ -79,19 +93,17 @@ const Img = styled.div`
 const Input = styled.input`
     display: block;
     height: 2rem;
-    margin-bottom: 8px;
-    margin-left: 5px;
     padding: 2px 8px;
-    width: 40%;
 `;
 
 const StyledButton = styled.button`
-    background-color: black;
-    border: 2px solid red;
-    border-radius: 5px;
-    color: red;
+    background-color: #ff444f;
+    border: 2px solid #ff444f;
+    border-radius: 4px;
+    color: #fff;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 14px;
+    padding: 10px 16px;
     width: 30%;
 `;
 
@@ -118,24 +130,47 @@ const ToggleButton = styled.button`
 const Wrapper = styled.div`
     background-image: url(https://i.ytimg.com/vi/scUkDeraDu8/maxresdefault.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     width: 100%;
+`;
+
+const InputLabel = styled.label`
+    border: 2px solid #ff444f;
+    border-radius: 4px;
+    color: #ff444f;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 16px;
+    display: inline-block;
+    cursor: pointer;
+
+    > input[type='file'] {
+        display: none;
+    }
+`;
+
+const H2 = styled.h2`
+    grid-column-start: 1;
+    grid-column-end: 3;
 `;
 
 export {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
-    Card,
+    GlobalStyle,
     CardName,
     CardPhoto,
     CardSection,
     CardTitle,
     FlexContainer,
     Form,
+    H2,
     Img,
     Input,
+    InputLabel,
     StyledButton,
     DownloadButton,
+    StyledCard,
     ToggleButton,
     Wrapper,
 };
