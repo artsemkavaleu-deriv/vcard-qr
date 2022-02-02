@@ -7,6 +7,7 @@ EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:${values.workEmail}
 TEL;TYPE=HOME,VOICE:${values.homePhone}
 TEL;TYPE=WORK,VOICE:${values.workPhone}
 TEL;TYPE=WORK,FAX:${values.workFax}
+ADR;TYPE=HOME:${values.street};${values.postalCode};${values.stateProvince};${values.countryRegion}
 ORG;CHARSET=UTF-8:${values.organization}
 URL;CHARSET=UTF-8:${values.url}
 PHOTO;TYPE=PNG;ENCODING=B:${photo}
