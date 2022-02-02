@@ -71,7 +71,7 @@ const App = () => {
     };
 
     const onLogoChange = e => {
-        const files = e.target.files;
+        const { files } = e.target;
         const file = files[0];
 
         const reader = new FileReader();
@@ -298,6 +298,19 @@ const App = () => {
                             </div>
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
+                        {isOpen.isLogoFieldOpen && (
+                            <InputLabel>
+                                <input
+                                    type='file'
+                                    name='logo'
+                                    placeholder='Logo'
+                                    onChange={e => {
+                                        onLogoChange(e);
+                                    }}
+                                />
+                                Upload a logo
+                            </InputLabel>
+                        )}
                     </ColoredButtonsWrapper>
                 </FlexContainer>
                 <Footer />
