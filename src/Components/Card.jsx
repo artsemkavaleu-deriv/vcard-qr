@@ -1,14 +1,13 @@
 import React from 'react';
 import QRCode from 'qrcode.react';
 import { CardName, CardPhoto, CardSection, CardTitle, StyledCard } from './Style';
-import logo from '../Assets/logo.png';
 
-const Card = ({ name, qr_code, src }) => {
+const Card = ({ logo, name, photo, qr_code }) => {
     return (
         <StyledCard>
             <CardTitle>vCard</CardTitle>
             <CardSection>
-                <CardPhoto src={src} />
+                <CardPhoto src={photo} />
                 <CardName>{name}</CardName>
                 {qr_code && (
                     <QRCode

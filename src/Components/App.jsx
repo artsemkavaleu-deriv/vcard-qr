@@ -1,17 +1,30 @@
 import React, { useRef, useState } from 'react';
 import { Formik } from 'formik';
 import { formatVCard } from '../Utils/helper';
-import { Buttons, FlexContainer, Form, GlobalStyle, Input, StyledButton, ToggleButton, Wrapper } from './Style';
+import {
+    Buttons,
+    FlexContainer,
+    Form,
+    GlobalStyle,
+    H2,
+    Input,
+    InputLabel,
+    StyledButton,
+    ToggleButton,
+    Wrapper,
+} from './Style';
 import Card from './Card';
 import Colors from './Colors';
 import Footer from './Footer';
 import Header from './Header';
+import logo from '../Assets/logo.png';
 
 const App = () => {
     const ref = useRef(null);
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(null);
+    const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
         isFrameFieldOpen: false,
         isColorFieldOpen: false,
@@ -51,6 +64,18 @@ const App = () => {
         };
     };
 
+    const onLogoChange = e => {
+        const files = e.target.files;
+        const file = files[0];
+
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setLogoSrc(reader.result);
+        };
+    };
+
     const getFullName = () => {
         const firstName = ref?.current?.values.firstName || '';
         const middleName = ref?.current?.values.middleName || '';
@@ -87,7 +112,7 @@ const App = () => {
                     >
                         {({ errors, handleChange, touched, values }) => (
                             <Form>
-                                <h2 style={{ width: '100%' }}>Create your vCard</h2>
+                                <H2>Create your vCard</H2>
                                 <Input
                                     type='text'
                                     name='firstName'
@@ -218,24 +243,27 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='file'
-                                    name='photo'
-                                    error={touched.photo && errors.photo}
-                                    value={values.photo}
-                                    placeholder='Photo'
-                                    onChange={e => {
-                                        handleChange(e);
-                                        onPhotoChange(e);
-                                    }}
-                                />
+                                <InputLabel>
+                                    <input
+                                        type='file'
+                                        name='photo'
+                                        error={touched.photo && errors.photo}
+                                        value={values.photo}
+                                        placeholder='Photo'
+                                        onChange={e => {
+                                            handleChange(e);
+                                            onPhotoChange(e);
+                                        }}
+                                    />
+                                    Upload your photo
+                                </InputLabel>
                                 <StyledButton type='button' onClick={() => generateQRCode(values)}>
                                     Generate
                                 </StyledButton>
                             </Form>
                         )}
                     </Formik>
-                    <Card name={getFullName()} qr_code={qr_code} src={photo_src} />
+                    <Card logo={logo_src} name={getFullName()} photo={photo_src} qr_code={qr_code} />
                     <Buttons>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
@@ -244,7 +272,19 @@ const App = () => {
                         {isOpen.isColorFieldOpen && <Colors vCardString={qr_code} />}
 
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
-                        {isOpen.isLogoFieldOpen && 'Logo'}
+                        {isOpen.isLogoFieldOpen && (
+                            <InputLabel>
+                                <input
+                                    type='file'
+                                    name='logo'
+                                    placeholder='Logo'
+                                    onChange={e => {
+                                        onLogoChange(e);
+                                    }}
+                                />
+                                Upload a logo
+                            </InputLabel>
+                        )}
                     </Buttons>
                 </FlexContainer>
                 <Footer />

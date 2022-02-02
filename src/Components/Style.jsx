@@ -65,8 +65,9 @@ const FlexContainer = styled.div`
 
 const Form = styled.form`
     width: 50%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.6rem;
     background-color: #fff;
     padding: 20px;
     margin: 0 auto;
@@ -83,10 +84,7 @@ const Img = styled.div`
 const Input = styled.input`
     display: block;
     height: 2rem;
-    margin-bottom: 8px;
-    margin-left: 5px;
     padding: 2px 8px;
-    width: 45%;
 `;
 
 const StyledButton = styled.button`
@@ -117,6 +115,26 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
+const InputLabel = styled.label`
+    border: 2px solid #ff444f;
+    border-radius: 4px;
+    color: #ff444f;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 16px;
+    display: inline-block;
+    cursor: pointer;
+
+    > input[type='file'] {
+        display: none;
+    }
+`;
+
+const H2 = styled.h2`
+    grid-column-start: 1;
+    grid-column-end: 3;
+`;
+
 export {
     GlobalStyle,
     Buttons,
@@ -126,8 +144,10 @@ export {
     CardTitle,
     FlexContainer,
     Form,
+    H2,
     Img,
     Input,
+    InputLabel,
     StyledButton,
     StyledCard,
     ToggleButton,
