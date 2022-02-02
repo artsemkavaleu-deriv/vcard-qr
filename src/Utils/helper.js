@@ -1,4 +1,4 @@
-const formatVCard = (values, photo) => {
+export const formatVCard = (values, photo) => {
     const vcard_formatted_string = `BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=UTF-8:${values.firstName} ${values.middleName} ${values.lastName}
@@ -15,5 +15,3 @@ END:VCARD`;
 
     return vcard_formatted_string;
 };
-
-export default { formatVCard };

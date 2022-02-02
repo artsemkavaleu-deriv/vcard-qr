@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
-import formatVCard from '../Utils/helper';
+import { formatVCard } from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
@@ -26,7 +26,7 @@ const App = () => {
     const ref = useRef(null);
     const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
-    const [photo, setPhoto] = useState();
+    const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(brand);
     const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
