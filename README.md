@@ -4,7 +4,7 @@ This is an application to generate your visiting card.
 ## Quick Start
 1. Fork the project to your repository to work on your own version of the application.
 2. Clone using `git clone git@github.com:farrah-deriv/vcard-qr.git`
-3. Install the dependencies using `npm run install`.
+3. Install the dependencies using `npm install`.
 
 ## Available Scripts
 **npm run build**
