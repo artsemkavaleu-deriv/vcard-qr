@@ -15,4 +15,4 @@ END:VCARD`;
     return vcard_formatted_string;
 };
 
-export default formatVCard;
+export default { formatVCard };
