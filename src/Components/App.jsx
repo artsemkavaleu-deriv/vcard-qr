@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react';
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
+import logo from '../Assets/logo.png';
 import { formatVCard } from '../Utils/helper';
 import {
-    Buttons,
+    ColoredButtonsWrapper,
+    DownloadButtonsWrapper,
     FlexContainer,
     Form,
     GlobalStyle,
@@ -10,17 +13,18 @@ import {
     Input,
     InputLabel,
     StyledButton,
+    DownloadButton,
     ToggleButton,
     Wrapper,
 } from './Style';
+import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from './Colors';
 import Card from './Card';
-import Colors from './Colors';
 import Footer from './Footer';
 import Header from './Header';
-import logo from '../Assets/logo.png';
 
 const App = () => {
     const ref = useRef(null);
+    const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(null);
@@ -34,6 +38,8 @@ const App = () => {
     const toggling1 = () => setIsOpen({ isFrameFieldOpen: !isOpen.isFrameFieldOpen });
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
+
+    const [choosenColor, setChoosenColor] = useState('#080808');
 
     const validateFields = values => {
         const errors = {};
@@ -53,7 +59,7 @@ const App = () => {
     };
 
     const onPhotoChange = e => {
-        const files = e.target.files;
+        const { files } = e.target;
         const file = files[0];
         const reader = new FileReader();
 
@@ -65,7 +71,7 @@ const App = () => {
     };
 
     const onLogoChange = e => {
-        const files = e.target.files;
+        const { files } = e.target;
         const file = files[0];
 
         const reader = new FileReader();
@@ -263,14 +269,34 @@ const App = () => {
                             </Form>
                         )}
                     </Formik>
-                    <Card logo={logo_src} name={getFullName()} photo={photo_src} qr_code={qr_code} />
-                    <Buttons>
+                    <div ref={componentRef}>
+                        <Card
+                            logo={logo_src}
+                            name={getFullName()}
+                            photo={photo_src}
+                            qr_code={qr_code}
+                            choosenColor={choosenColor}
+                        />
+                    </div>
+                    <DownloadButtonsWrapper>
+                        <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
+                        <DownloadButton onClick={() => exportComponentAsPDF(componentRef)}>PDF</DownloadButton>
+                        <DownloadButton onClick={() => exportComponentAsPNG(componentRef)}>PNG</DownloadButton>
+                    </DownloadButtonsWrapper>
+                    <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
 
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
-                        {isOpen.isColorFieldOpen && <Colors vCardString={qr_code} />}
-
+                        {isOpen.isColorFieldOpen && (
+                            <div>
+                                <BlackButton onClick={() => setChoosenColor('#080808')} />
+                                <RedButton onClick={() => setChoosenColor('#f72a31')} />
+                                <GreenButton onClick={() => setChoosenColor('#1ef730')} />
+                                <BlueButton onClick={() => setChoosenColor('#1e33f7')} />
+                                <OrangeButton onClick={() => setChoosenColor('#fa9716')} />
+                            </div>
+                        )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
                         {isOpen.isLogoFieldOpen && (
                             <InputLabel>
@@ -285,7 +311,7 @@ const App = () => {
                                 Upload a logo
                             </InputLabel>
                         )}
-                    </Buttons>
+                    </ColoredButtonsWrapper>
                 </FlexContainer>
                 <Footer />
             </Wrapper>

@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Buttons = styled.div`
+const ColoredButtonsWrapper = styled.div`
     align-content: space-between;
     align-items: left;
     background-color: #eee;
@@ -18,9 +18,18 @@ const Buttons = styled.div`
     padding: 5px;
 `;
 
+const DownloadButtonsWrapper = styled.div`
+    align-content: space-between;
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+`;
+
 const StyledCard = styled.div`
     border: 3px solid #515151;
     border-radius: 6px;
+    margin-right: 40px;
 `;
 
 const CardName = styled.div`
@@ -98,6 +107,16 @@ const StyledButton = styled.button`
     width: 30%;
 `;
 
+const DownloadButton = styled.button`
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    font-size: 22px;
+    width: 100%;
+`;
+
 const ToggleButton = styled.button`
     background: rgba(236, 241, 247, 0.5);
     border: 1px solid gray;
@@ -136,8 +155,9 @@ const H2 = styled.h2`
 `;
 
 export {
+    ColoredButtonsWrapper,
+    DownloadButtonsWrapper,
     GlobalStyle,
-    Buttons,
     CardName,
     CardPhoto,
     CardSection,
@@ -149,6 +169,7 @@ export {
     Input,
     InputLabel,
     StyledButton,
+    DownloadButton,
     StyledCard,
     ToggleButton,
     Wrapper,
