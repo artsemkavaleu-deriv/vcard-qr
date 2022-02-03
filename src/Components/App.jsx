@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
-import logo from '../Assets/logo.png';
 import { formatVCard } from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
@@ -13,7 +12,6 @@ import {
     Input,
     InputLabel,
     StyledButton,
-    DownloadButton,
     ToggleButton,
     Wrapper,
 } from './Style';
@@ -22,38 +20,46 @@ import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
 import {
-    Img1Button,
-    Img1,
-    Img2Button,
-    Img2,
-    Img3Button,
-    Img3,
-    Img4Button,
-    Img4,
-    Img5Button,
-    Img5,
-    Img6Button,
-    Img6,
+    Frame1Button,
+    Frame1,
+    Frame2Button,
+    Frame2,
+    Frame3Button,
+    Frame3,
+    Frame4Button,
+    Frame4,
+    Frame5Button,
+    Frame5,
+    Frame6Button,
+    Frame6,
+    Frame7Button,
+    Frame7,
+    Frame8Button,
 } from './Frames';
+import logo from '../Assets/logo.png';
+import brand from '../Assets/brand_logo.png';
 
 const App = () => {
     const ref = useRef(null);
     const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
-    const [photo_src, setPhotoSrc] = useState(null);
+    const [photo_src, setPhotoSrc] = useState(brand);
     const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
-        isFrameFieldOpen: false,
+        isFrameFieldOpen: true,
         isColorFieldOpen: false,
         isLogoFieldOpen: false,
     });
+    const [toggle_download_button, setToggleDownloadButton] = useState(false);
 
     const toggling1 = () => setIsOpen({ isFrameFieldOpen: !isOpen.isFrameFieldOpen });
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
+    const onDownloadButtonClick = () => setToggleDownloadButton(!toggle_download_button);
 
     const [color, setColor] = useState('#080808');
+
     const [frame, setFrame] = useState();
 
     const validateFields = values => {
@@ -88,7 +94,6 @@ const App = () => {
     const onLogoChange = e => {
         const { files } = e.target;
         const file = files[0];
-
         const reader = new FileReader();
 
         reader.readAsDataURL(file);
@@ -104,7 +109,7 @@ const App = () => {
 
         return `${firstName.toUpperCase()} ${middleName.toUpperCase()} ${lastName.toUpperCase()}`;
     };
-    console.log(frame);
+
     return (
         <div>
             <GlobalStyle />
@@ -133,7 +138,7 @@ const App = () => {
                     >
                         {({ errors, handleChange, touched, values }) => (
                             <Form>
-                                <H2>Create your vCard</H2>
+                                <H2>Create your visiting card</H2>
                                 <Input
                                     type='text'
                                     name='firstName'
@@ -294,21 +299,18 @@ const App = () => {
                             color={color}
                         />
                     </div>
-                    <DownloadButtonsWrapper>
-                        <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
-                        <DownloadButton onClick={() => exportComponentAsPDF(componentRef)}>PDF</DownloadButton>
-                        <DownloadButton onClick={() => exportComponentAsPNG(componentRef)}>PNG</DownloadButton>
-                    </DownloadButtonsWrapper>
                     <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && (
                             <div>
-                                <Img1Button onClick={() => setFrame(Img1)} />
-                                <Img2Button onClick={() => setFrame(Img2)} />
-                                <Img3Button onClick={() => setFrame(Img3)} />
-                                <Img4Button onClick={() => setFrame(Img4)} />
-                                <Img5Button onClick={() => setFrame(Img5)} />
-                                <Img6Button onClick={() => setFrame(Img6)} />
+                                <Frame1Button onClick={() => setFrame(Frame1)} />
+                                <Frame2Button onClick={() => setFrame(Frame2)} />
+                                <Frame3Button onClick={() => setFrame(Frame3)} />
+                                <Frame4Button onClick={() => setFrame(Frame4)} />
+                                <Frame5Button onClick={() => setFrame(Frame5)} />
+                                <Frame6Button onClick={() => setFrame(Frame6)} />
+                                <Frame7Button onClick={() => setFrame(Frame7)} />
+                                <Frame8Button onClick={() => setFrame('')} />
                             </div>
                         )}
 
@@ -335,6 +337,14 @@ const App = () => {
                                 />
                                 Upload a logo
                             </InputLabel>
+                        )}
+                        <ToggleButton onClick={onDownloadButtonClick}>Download</ToggleButton>
+                        {toggle_download_button && (
+                            <DownloadButtonsWrapper>
+                                <StyledButton onClick={() => exportComponentAsJPEG(componentRef)}>As JPG</StyledButton>
+                                <StyledButton onClick={() => exportComponentAsPNG(componentRef)}>As PNG</StyledButton>
+                                <StyledButton onClick={() => exportComponentAsPDF(componentRef)}>As PDF</StyledButton>
+                            </DownloadButtonsWrapper>
                         )}
                     </ColoredButtonsWrapper>
                 </FlexContainer>

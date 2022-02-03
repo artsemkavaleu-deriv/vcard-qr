@@ -7,8 +7,8 @@ import { CardName, CardPhoto, CardSection, CardTitle, StyledCard } from './Style
 const Frame = styled.div`
     display: flex;
     justify-content: center;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 270px;
     padding-top: 40px;
     background-image: url('${props => props.frame}');
     background-position-y: -0px;
@@ -31,7 +31,7 @@ const Card = ({ logo, frame, name, photo, qr_code, color }) => (
                             height: 40,
                             width: 40,
                         }}
-                        size={170}
+                        size={175}
                         value={qr_code}
                     />
                 </Frame>
