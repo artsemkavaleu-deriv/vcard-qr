@@ -47,7 +47,7 @@ const App = () => {
     const [photo_src, setPhotoSrc] = useState(brand);
     const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
-        isFrameFieldOpen: true,
+        isFrameFieldOpen: false,
         isColorFieldOpen: false,
         isLogoFieldOpen: false,
     });
