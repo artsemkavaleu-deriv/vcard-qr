@@ -21,6 +21,20 @@ import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from '.
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
+import {
+    Img1Button,
+    Img1,
+    Img2Button,
+    Img2,
+    Img3Button,
+    Img3,
+    Img4Button,
+    Img4,
+    Img5Button,
+    Img5,
+    Img6Button,
+    Img6,
+} from './Frames';
 
 const App = () => {
     const ref = useRef(null);
@@ -39,7 +53,8 @@ const App = () => {
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
 
-    const [choosenColor, setChoosenColor] = useState('#080808');
+    const [color, setColor] = useState('#080808');
+    const [frame, setFrame] = useState();
 
     const validateFields = values => {
         const errors = {};
@@ -89,7 +104,7 @@ const App = () => {
 
         return `${firstName.toUpperCase()} ${middleName.toUpperCase()} ${lastName.toUpperCase()}`;
     };
-
+    console.log(frame);
     return (
         <div>
             <GlobalStyle />
@@ -272,10 +287,11 @@ const App = () => {
                     <div ref={componentRef}>
                         <Card
                             logo={logo_src}
+                            frame={frame}
                             name={getFullName()}
                             photo={photo_src}
                             qr_code={qr_code}
-                            choosenColor={choosenColor}
+                            color={color}
                         />
                     </div>
                     <DownloadButtonsWrapper>
@@ -285,16 +301,25 @@ const App = () => {
                     </DownloadButtonsWrapper>
                     <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
-                        {isOpen.isFrameFieldOpen && 'Frames'}
+                        {isOpen.isFrameFieldOpen && (
+                            <div>
+                                <Img1Button onClick={() => setFrame(Img1)} />
+                                <Img2Button onClick={() => setFrame(Img2)} />
+                                <Img3Button onClick={() => setFrame(Img3)} />
+                                <Img4Button onClick={() => setFrame(Img4)} />
+                                <Img5Button onClick={() => setFrame(Img5)} />
+                                <Img6Button onClick={() => setFrame(Img6)} />
+                            </div>
+                        )}
 
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
                         {isOpen.isColorFieldOpen && (
                             <div>
-                                <BlackButton onClick={() => setChoosenColor('#080808')} />
-                                <RedButton onClick={() => setChoosenColor('#f72a31')} />
-                                <GreenButton onClick={() => setChoosenColor('#1ef730')} />
-                                <BlueButton onClick={() => setChoosenColor('#1e33f7')} />
-                                <OrangeButton onClick={() => setChoosenColor('#fa9716')} />
+                                <BlackButton onClick={() => setColor('#080808')} />
+                                <RedButton onClick={() => setColor('#f72a31')} />
+                                <GreenButton onClick={() => setColor('#1ef730')} />
+                                <BlueButton onClick={() => setColor('#1e33f7')} />
+                                <OrangeButton onClick={() => setColor('#fa9716')} />
                             </div>
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
