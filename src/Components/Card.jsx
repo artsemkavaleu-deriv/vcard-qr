@@ -11,7 +11,7 @@ const Card = ({ color, logo, name, photo, qr_code }) => (
             <CardName>{name}</CardName>
             {qr_code && (
                 <QRCode
-                    bgColor='white'
+                    bgColor='#fff'
                     fgColor={color}
                     imageSettings={{
                         src: logo,
