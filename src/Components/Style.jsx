@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+const brand_color = '#ff444f';
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -9,27 +11,21 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const ColoredButtonsWrapper = styled.div`
-    align-content: space-between;
-    align-items: left;
+    display: grid;
+    grid-row-gap: 8px;
+    padding: 10px;
     background-color: #eee;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding: 5px;
+    width: 150px;
 `;
 
 const DownloadButtonsWrapper = styled.div`
-    align-content: space-between;
-    align-items: left;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-row-gap: 8px;
 `;
 
 const StyledCard = styled.div`
-    border: 3px solid #515151;
+    border: 3px solid ${brand_color};
     border-radius: 6px;
-    margin-right: 40px;
 `;
 
 const CardName = styled.div`
@@ -40,9 +36,9 @@ const CardName = styled.div`
 `;
 
 const CardPhoto = styled.img`
-    height: 150px;
+    height: 132px;
     margin: auto;
-    width: 150px;
+    border-radius: 50%;
 `;
 
 const CardSection = styled.div`
@@ -50,12 +46,12 @@ const CardSection = styled.div`
     background-color: #eee;
     display: flex;
     flex-direction: column;
-    padding: 2rem 5rem;
+    padding: 1.6rem 5rem;
 `;
 
 const CardTitle = styled.div`
     align-items: center;
-    background-color: #000;
+    background-color: ${brand_color};
     color: #fff;
     display: flex;
     height: 2rem;
@@ -66,10 +62,9 @@ const CardTitle = styled.div`
 const FlexContainer = styled.div`
     align-items: start;
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 184px);
     justify-content: center;
     margin: 1rem;
-    width: calc(100% - 10rem);
 `;
 
 const Form = styled.form`
@@ -79,7 +74,7 @@ const Form = styled.form`
     grid-gap: 0.6rem;
     background-color: #fff;
     padding: 20px;
-    margin: 0 auto;
+    margin-right: 5rem;
     border-radius: 4px;
 `;
 
@@ -97,34 +92,31 @@ const Input = styled.input`
 `;
 
 const StyledButton = styled.button`
-    background-color: #ff444f;
-    border: 2px solid #ff444f;
+    background-color: ${brand_color};
+    border: 2px solid ${brand_color};
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
     font-size: 14px;
     padding: 10px 16px;
-    width: 30%;
+    width: auto;
 `;
 
 const DownloadButton = styled.button`
-    background-color: black;
-    border: 2px solid red;
+    border: 2px solid ${brand_color};
     border-radius: 5px;
-    color: red;
+    color: ${brand_color};
     cursor: pointer;
     font-size: 22px;
     width: 100%;
 `;
 
 const ToggleButton = styled.button`
-    background: rgba(236, 241, 247, 0.5);
-    border: 1px solid gray;
+    border: 2px solid ${brand_color};
     border-radius: 5px;
     cursor: pointer;
-    height: 40px;
-    margin-bottom: 2px;
-    width: 150px;
+    padding: 10px 16px;
+    color: ${brand_color};
 `;
 
 const Wrapper = styled.div`
@@ -135,14 +127,13 @@ const Wrapper = styled.div`
 `;
 
 const InputLabel = styled.label`
-    border: 2px solid #ff444f;
-    border-radius: 4px;
-    color: #ff444f;
+    color: ${brand_color};
     cursor: pointer;
     font-size: 14px;
     padding: 10px 16px;
     display: inline-block;
     cursor: pointer;
+    text-decoration: underline;
 
     > input[type='file'] {
         display: none;
@@ -152,6 +143,8 @@ const InputLabel = styled.label`
 const H2 = styled.h2`
     grid-column-start: 1;
     grid-column-end: 3;
+    margin-top: unset;
+    color: ${brand_color};
 `;
 
 export {

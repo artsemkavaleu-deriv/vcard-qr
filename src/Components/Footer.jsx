@@ -6,6 +6,7 @@ const StyledDiv = styled.div`
     color: #fff;
     padding: 8px;
     text-align: center;
+    font-size: 12px;
 `;
 
 const Footer = () => (

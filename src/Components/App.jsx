@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
-import logo from '../Assets/logo.png';
-import formatVCard from '../Utils/helper';
+import { formatVCard } from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
@@ -13,7 +12,6 @@ import {
     Input,
     InputLabel,
     StyledButton,
-    DownloadButton,
     ToggleButton,
     Wrapper,
 } from './Style';
@@ -21,23 +19,27 @@ import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from '.
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
+import logo from '../Assets/logo.png';
+import brand from '../Assets/brand_logo.png';
 
 const App = () => {
     const ref = useRef(null);
     const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
-    const [photo_src, setPhotoSrc] = useState(null);
+    const [photo_src, setPhotoSrc] = useState(brand);
     const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
         isFrameFieldOpen: false,
         isColorFieldOpen: false,
         isLogoFieldOpen: false,
     });
+    const [toggle_download_button, setToggleDownloadButton] = useState(false);
 
     const toggling1 = () => setIsOpen({ isFrameFieldOpen: !isOpen.isFrameFieldOpen });
     const toggling2 = () => setIsOpen({ isColorFieldOpen: !isOpen.isColorFieldOpen });
     const toggling3 = () => setIsOpen({ isLogoFieldOpen: !isOpen.isLogoFieldOpen });
+    const onDownloadButtonClick = () => setToggleDownloadButton(!toggle_download_button);
 
     const [color, setColor] = useState('#080808');
 
@@ -73,7 +75,6 @@ const App = () => {
     const onLogoChange = e => {
         const { files } = e.target;
         const file = files[0];
-
         const reader = new FileReader();
 
         reader.readAsDataURL(file);
@@ -118,7 +119,7 @@ const App = () => {
                     >
                         {({ errors, handleChange, touched, values }) => (
                             <Form>
-                                <H2>Create your vCard</H2>
+                                <H2>Create your visiting card</H2>
                                 <Input
                                     type='text'
                                     name='firstName'
@@ -272,11 +273,6 @@ const App = () => {
                     <div ref={componentRef}>
                         <Card logo={logo_src} name={getFullName()} photo={photo_src} qr_code={qr_code} color={color} />
                     </div>
-                    <DownloadButtonsWrapper>
-                        <DownloadButton onClick={() => exportComponentAsJPEG(componentRef)}>JPEG</DownloadButton>
-                        <DownloadButton onClick={() => exportComponentAsPDF(componentRef)}>PDF</DownloadButton>
-                        <DownloadButton onClick={() => exportComponentAsPNG(componentRef)}>PNG</DownloadButton>
-                    </DownloadButtonsWrapper>
                     <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && 'Frames'}
@@ -304,6 +300,14 @@ const App = () => {
                                 />
                                 Upload a logo
                             </InputLabel>
+                        )}
+                        <ToggleButton onClick={onDownloadButtonClick}>Download</ToggleButton>
+                        {toggle_download_button && (
+                            <DownloadButtonsWrapper>
+                                <StyledButton onClick={() => exportComponentAsJPEG(componentRef)}>As JPG</StyledButton>
+                                <StyledButton onClick={() => exportComponentAsPNG(componentRef)}>As PNG</StyledButton>
+                                <StyledButton onClick={() => exportComponentAsPDF(componentRef)}>As PDF</StyledButton>
+                            </DownloadButtonsWrapper>
                         )}
                     </ColoredButtonsWrapper>
                 </FlexContainer>
