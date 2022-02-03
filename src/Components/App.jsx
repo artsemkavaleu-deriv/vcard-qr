@@ -19,6 +19,23 @@ import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from '.
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
+import {
+    Frame1Button,
+    Frame1,
+    Frame2Button,
+    Frame2,
+    Frame3Button,
+    Frame3,
+    Frame4Button,
+    Frame4,
+    Frame5Button,
+    Frame5,
+    Frame6Button,
+    Frame6,
+    Frame7Button,
+    Frame7,
+    Frame8Button,
+} from './Frames';
 import logo from '../Assets/logo.png';
 import brand from '../Assets/brand_logo.png';
 
@@ -42,6 +59,8 @@ const App = () => {
     const onDownloadButtonClick = () => setToggleDownloadButton(!toggle_download_button);
 
     const [color, setColor] = useState('#080808');
+
+    const [frame, setFrame] = useState();
 
     const validateFields = values => {
         const errors = {};
@@ -271,11 +290,29 @@ const App = () => {
                         )}
                     </Formik>
                     <div ref={componentRef}>
-                        <Card logo={logo_src} name={getFullName()} photo={photo_src} qr_code={qr_code} color={color} />
+                        <Card
+                            logo={logo_src}
+                            frame={frame}
+                            name={getFullName()}
+                            photo={photo_src}
+                            qr_code={qr_code}
+                            color={color}
+                        />
                     </div>
                     <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
-                        {isOpen.isFrameFieldOpen && 'Frames'}
+                        {isOpen.isFrameFieldOpen && (
+                            <div>
+                                <Frame1Button onClick={() => setFrame(Frame1)} />
+                                <Frame2Button onClick={() => setFrame(Frame2)} />
+                                <Frame3Button onClick={() => setFrame(Frame3)} />
+                                <Frame4Button onClick={() => setFrame(Frame4)} />
+                                <Frame5Button onClick={() => setFrame(Frame5)} />
+                                <Frame6Button onClick={() => setFrame(Frame6)} />
+                                <Frame7Button onClick={() => setFrame(Frame7)} />
+                                <Frame8Button onClick={() => setFrame('')} />
+                            </div>
+                        )}
 
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
                         {isOpen.isColorFieldOpen && (
