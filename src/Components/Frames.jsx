@@ -9,7 +9,7 @@ import seven from '../Assets/border-six.svg';
 import cancel from '../Assets/294245.svg';
 
 const Frame1Button = styled.button`
-    margin: 5px;
+    margin: 5px 5px 5px 20px;
     width: 50px;
     height: 50px;
     border: 2px;
@@ -27,7 +27,7 @@ const Frame2Button = styled.button`
 const Frame2 = six;
 
 const Frame3Button = styled.button`
-    margin: 5px;
+    margin: 5px 5px 5px 20px;
     width: 50px;
     height: 50px;
     border: 2px;
@@ -45,7 +45,7 @@ const Frame4Button = styled.button`
 const Frame4 = three;
 
 const Frame5Button = styled.button`
-    margin: 5px;
+    margin: 5px 5px 5px 20px;
     width: 50px;
     height: 50px;
     border: 2px;
@@ -63,7 +63,7 @@ const Frame6Button = styled.button`
 const Frame6 = five;
 
 const Frame7Button = styled.button`
-    margin: 5px;
+    margin: 5px 5px 5px 20px;
     width: 50px;
     height: 50px;
     border: 2px;
