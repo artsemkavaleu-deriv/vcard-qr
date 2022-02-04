@@ -106,8 +106,9 @@ const Img = styled.div`
 `;
 
 const Input = styled.input`
-    background: none;
-    border: 1px solid ${brand_color};
+background: none;
+    border: 1px solid gray;
+    border-radius: 5px;
     color: white;
     display: block;
     height: 2rem;
@@ -134,7 +135,8 @@ const InputLabel = styled.label`
 `;
 
 const StyledButton = styled.button`
-    background-color: ${brand_color};
+    background: NONE;
+    // background-color: ${brand_color};
     border: 2px solid ${brand_color};
     border-radius: 4px;
     color: #fff;
@@ -150,12 +152,13 @@ const StyledCard = styled.div`
 `;
 
 const ToggleButton = styled.button`
-    background: none;
+    background-color: ${brand_color};
     border: 1px solid ${brand_color};
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 16px;
-    color: ${brand_color};
+    // color: ${brand_color};
+    color: white;
 `;
 
 const Wrapper = styled.div`

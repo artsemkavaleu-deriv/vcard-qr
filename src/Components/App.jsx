@@ -283,9 +283,9 @@ const App = () => {
                                     />
                                     Upload your photo
                                 </InputLabel>
-                                <StyledButton type='button' onClick={() => generateQRCode(values)}>
+                                <ToggleButton type='button' onClick={() => generateQRCode(values)}>
                                     Generate
-                                </StyledButton>
+                                </ToggleButton>
                             </Form>
                         )}
                     </Formik>
