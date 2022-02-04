@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
-import { formatVCard } from '../Utils/helper';
+import formatVCard from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,

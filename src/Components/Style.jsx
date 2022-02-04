@@ -177,27 +177,6 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-const InputLabel = styled.label`
-    color: ${brand_color};
-    cursor: pointer;
-    font-size: 14px;
-    padding: 10px 16px;
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: underline;
-
-    > input[type='file'] {
-        display: none;
-    }
-`;
-
-const H2 = styled.h2`
-    grid-column-start: 1;
-    grid-column-end: 3;
-    margin-top: unset;
-    color: ${brand_color};
-`;
-
 const InputWrapperDiv = styled.div`
     display: flex;
     flex-direction: column;
