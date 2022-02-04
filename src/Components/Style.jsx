@@ -14,12 +14,12 @@ const CardName = styled.div`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin: 1rem 0 1rem;
+    margin-bottom: 1rem;
 `;
 
 const CardPhoto = styled.img`
     border-radius: 50%;
-    height: 120px;
+    height: 100px;
     margin: auto;
 `;
 
@@ -83,11 +83,10 @@ const Form = styled.form`
 const Frame = styled.div`
     background-image: url('${props => props.frame}');
     background-repeat: no-repeat;
-    // background-position-y: -22px;
     display: flex;
     height: 270px;
     justify-content: center;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
     padding-top: 40px;
     width: 250px;
 `;
