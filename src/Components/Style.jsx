@@ -141,7 +141,6 @@ const InputLabel = styled.label`
 
 const StyledButton = styled.button`
     background: NONE;
-    // background-color: ${brand_color};
     border: 2px solid ${brand_color};
     border-radius: 4px;
     color: #fff;
@@ -149,10 +148,6 @@ const StyledButton = styled.button`
     font-size: 14px;
     padding: 10px 16px;
     width: auto;
-
-    :disabled {
-        opacity: 0.5;
-    }
 `;
 
 const StyledCard = styled.div`
@@ -166,8 +161,11 @@ const ToggleButton = styled.button`
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 16px;
-    // color: ${brand_color};
     color: white;
+
+    :disabled {
+        opacity: 0.5;
+    }
 `;
 
 const Wrapper = styled.div`
