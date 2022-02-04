@@ -7,6 +7,7 @@ import {
     DownloadButtonsWrapper,
     FlexContainer,
     Form,
+    FrameButtonsWrapper,
     GlobalStyle,
     H2,
     Input,
@@ -302,7 +303,7 @@ const App = () => {
                     <ColoredButtonsWrapper>
                         <ToggleButton onClick={toggling1}>Frames</ToggleButton>
                         {isOpen.isFrameFieldOpen && (
-                            <div>
+                            <FrameButtonsWrapper>
                                 <Frame1Button onClick={() => setFrame(Frame1)} />
                                 <Frame2Button onClick={() => setFrame(Frame2)} />
                                 <Frame3Button onClick={() => setFrame(Frame3)} />
@@ -311,7 +312,7 @@ const App = () => {
                                 <Frame6Button onClick={() => setFrame(Frame6)} />
                                 <Frame7Button onClick={() => setFrame(Frame7)} />
                                 <Frame8Button onClick={() => setFrame('')} />
-                            </div>
+                            </FrameButtonsWrapper>
                         )}
 
                         <ToggleButton onClick={toggling2}>Colors</ToggleButton>
