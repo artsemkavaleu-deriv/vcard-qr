@@ -11,6 +11,7 @@ import {
     H2,
     Input,
     InputLabel,
+    InputWrapperDiv,
     StyledButton,
     ToggleButton,
     Wrapper,
@@ -22,12 +23,22 @@ import Header from './Header';
 import logo from '../Assets/logo.png';
 import brand from '../Assets/brand_logo.png';
 
+const InputWrapper = ({ children, error }) => {
+    return (
+        <InputWrapperDiv>
+            {children}
+            <div>{error}</div>
+        </InputWrapperDiv>
+    );
+};
+
 const App = () => {
     const ref = useRef(null);
     const componentRef = React.createRef();
     const [qr_code, setQRCode] = useState('https://deriv.com');
     const [photo, setPhoto] = useState(null);
     const [photo_src, setPhotoSrc] = useState(brand);
+    const [file_type, setFileType] = useState(null);
     const [logo_src, setLogoSrc] = useState(logo);
     const [isOpen, setIsOpen] = useState({
         isFrameFieldOpen: false,
@@ -47,28 +58,42 @@ const App = () => {
         const errors = {};
 
         if (!values.firstName) {
-            errors.last_name = 'Please enter your first name.';
+            errors.firstName = 'Please enter your first name.';
         } else if (!values.lastName) {
-            errors.last_name = 'Please enter your last name.';
+            errors.lastName = 'Please enter your last name.';
+        } else if (!/\S+@\S+\.\S+/.test(values.workEmail)) {
+            errors.workEmail = 'Please enter a valid email.';
+        } else if (values.url && !/^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/.test(values.url)) {
+            errors.url = 'Please enter a valid website.';
         }
 
         return errors;
     };
 
     const generateQRCode = values => {
-        const vcard_formatted_string = formatVCard(values, photo);
+        const vcard_formatted_string = formatVCard(file_type, photo, values);
         setQRCode(vcard_formatted_string);
+    };
+
+    const onFileSelectError = ({ error }) => {
+        alert(error);
     };
 
     const onPhotoChange = e => {
         const { files } = e.target;
         const file = files[0];
-        const reader = new FileReader();
 
+        if (file.size > 1062) {
+            onFileSelectError({ error: 'Please upload a file smaller than 1 KB' });
+            return;
+        }
+
+        const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
             setPhotoSrc(reader.result);
             setPhoto(reader.result.split(',')[1]);
+            setFileType(file.type);
         };
     };
 
@@ -117,19 +142,21 @@ const App = () => {
                         innerRef={ref}
                         validate={validateFields}
                     >
-                        {({ errors, handleChange, touched, values }) => (
+                        {({ dirty, errors, handleChange, isSubmitting, isValid, touched, values }) => (
                             <Form>
                                 <H2>Create your visiting card</H2>
-                                <Input
-                                    type='text'
-                                    name='firstName'
-                                    error={touched.firstName && errors.firstName}
-                                    value={values.firstName}
-                                    placeholder='First Name'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
+                                <InputWrapper error={errors.firstName}>
+                                    <Input
+                                        type='text'
+                                        name='firstName'
+                                        error={touched.firstName && errors.firstName}
+                                        value={values.firstName}
+                                        placeholder='First Name'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
                                 <Input
                                     type='text'
                                     name='middleName'
@@ -140,36 +167,42 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='text'
-                                    name='lastName'
-                                    error={touched.lastName && errors.lastName}
-                                    value={values.lastName}
-                                    placeholder='Last name'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
-                                <Input
-                                    type='text'
-                                    name='homePhone'
-                                    error={touched.homePhone && errors.homePhone}
-                                    value={values.homePhone}
-                                    placeholder='Mobile Phone'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
-                                <Input
-                                    type='text'
-                                    name='workPhone'
-                                    error={touched.workPhone && errors.workPhone}
-                                    value={values.workPhone}
-                                    placeholder='Work Phone'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
+                                <InputWrapper error={errors.lastName}>
+                                    <Input
+                                        type='text'
+                                        name='lastName'
+                                        error={touched.lastName && errors.lastName}
+                                        value={values.lastName}
+                                        placeholder='Last name'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
+                                <InputWrapper error={errors.homePhone}>
+                                    <Input
+                                        type='text'
+                                        name='homePhone'
+                                        error={touched.homePhone && errors.homePhone}
+                                        value={values.homePhone}
+                                        placeholder='Mobile Phone'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
+                                <InputWrapper error={errors.workPhone}>
+                                    <Input
+                                        type='text'
+                                        name='workPhone'
+                                        error={touched.workPhone && errors.workPhone}
+                                        value={values.workPhone}
+                                        placeholder='Work Phone'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
                                 <Input
                                     type='text'
                                     name='workFax'
@@ -180,16 +213,18 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='text'
-                                    name='workEmail'
-                                    error={touched.workEmail && errors.workEmail}
-                                    value={values.workEmail}
-                                    placeholder='Email'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
+                                <InputWrapper error={errors.workEmail}>
+                                    <Input
+                                        type='text'
+                                        name='workEmail'
+                                        error={touched.workEmail && errors.workEmail}
+                                        value={values.workEmail}
+                                        placeholder='Email'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
                                 <Input
                                     type='text'
                                     name='organization'
@@ -210,16 +245,18 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='text'
-                                    name='postalCode'
-                                    error={touched.postalCode && errors.postalCode}
-                                    value={values.postalCode}
-                                    placeholder='Postal Code'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
+                                <InputWrapper error={errors.postalCode}>
+                                    <Input
+                                        type='text'
+                                        name='postalCode'
+                                        error={touched.postalCode && errors.postalCode}
+                                        value={values.postalCode}
+                                        placeholder='Postal Code'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
                                 <Input
                                     type='text'
                                     name='stateProvince'
@@ -240,19 +277,22 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <Input
-                                    type='text'
-                                    name='url'
-                                    error={touched.url && errors.url}
-                                    value={values.url}
-                                    placeholder='Website'
-                                    onChange={e => {
-                                        handleChange(e);
-                                    }}
-                                />
+                                <InputWrapper error={errors.url}>
+                                    <Input
+                                        type='text'
+                                        name='url'
+                                        error={touched.url && errors.url}
+                                        value={values.url}
+                                        placeholder='Website'
+                                        onChange={e => {
+                                            handleChange(e);
+                                        }}
+                                    />
+                                </InputWrapper>
                                 <InputLabel>
                                     <input
                                         type='file'
+                                        accept='image/jpeg, image/png'
                                         name='photo'
                                         error={touched.photo && errors.photo}
                                         value={values.photo}
@@ -264,7 +304,11 @@ const App = () => {
                                     />
                                     Upload your photo
                                 </InputLabel>
-                                <StyledButton type='button' onClick={() => generateQRCode(values)}>
+                                <StyledButton
+                                    type='button'
+                                    disabled={!dirty || isSubmitting || !isValid}
+                                    onClick={() => generateQRCode(values)}
+                                >
                                     Generate
                                 </StyledButton>
                             </Form>
@@ -292,6 +336,7 @@ const App = () => {
                             <InputLabel>
                                 <input
                                     type='file'
+                                    accept='image/*'
                                     name='logo'
                                     placeholder='Logo'
                                     onChange={e => {

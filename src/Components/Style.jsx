@@ -100,6 +100,10 @@ const StyledButton = styled.button`
     font-size: 14px;
     padding: 10px 16px;
     width: auto;
+
+    :disabled {
+        opacity: 0.5;
+    }
 `;
 
 const DownloadButton = styled.button`
@@ -147,6 +151,13 @@ const H2 = styled.h2`
     color: ${brand_color};
 `;
 
+const InputWrapperDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: red;
+`;
+
 export {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
@@ -161,6 +172,7 @@ export {
     Img,
     Input,
     InputLabel,
+    InputWrapperDiv,
     StyledButton,
     DownloadButton,
     StyledCard,
