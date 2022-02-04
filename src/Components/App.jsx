@@ -342,9 +342,34 @@ const App = () => {
                         <ToggleButton onClick={onDownloadButtonClick}>Download</ToggleButton>
                         {toggle_download_button && (
                             <DownloadButtonsWrapper>
-                                <StyledButton onClick={() => exportComponentAsJPEG(componentRef)}>As JPG</StyledButton>
-                                <StyledButton onClick={() => exportComponentAsPNG(componentRef)}>As PNG</StyledButton>
-                                <StyledButton onClick={() => exportComponentAsPDF(componentRef)}>As PDF</StyledButton>
+                                <StyledButton
+                                    onClick={() =>
+                                        exportComponentAsJPEG(componentRef, {
+                                            fileName: 'vCard',
+                                        })
+                                    }
+                                >
+                                    As JPG
+                                </StyledButton>
+                                <StyledButton
+                                    onClick={() =>
+                                        exportComponentAsPNG(componentRef, {
+                                            fileName: 'vCard',
+                                        })
+                                    }
+                                >
+                                    As PNG
+                                </StyledButton>
+                                <StyledButton
+                                    onClick={() =>
+                                        exportComponentAsPDF(componentRef, {
+                                            fileName: 'vCard',
+                                            pdfOptions: { w: 210, h: 300 },
+                                        })
+                                    }
+                                >
+                                    As PDF
+                                </StyledButton>
                             </DownloadButtonsWrapper>
                         )}
                     </ColoredButtonsWrapper>

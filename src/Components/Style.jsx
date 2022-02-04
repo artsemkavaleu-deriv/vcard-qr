@@ -45,7 +45,7 @@ const ColoredButtonsWrapper = styled.div`
     display: grid;
     grid-row-gap: 8px;
     padding-left: 10px;
-    width: 150px;
+    width: 200px;
 `;
 
 const DownloadButton = styled.button`
@@ -81,7 +81,7 @@ const Form = styled.form`
 `;
 
 const FrameButtonsWrapper = styled.div`
-    background-color: rgba(239, 239, 239, 0.3);
+    background-color: rgba(239, 239, 239);
     border-radius: 5px;
 `;
 
@@ -111,8 +111,8 @@ const Img = styled.div`
 `;
 
 const Input = styled.input`
-background: none;
-    border: 1px solid gray;
+    background: none;
+    border: 2px solid gray;
     border-radius: 5px;
     color: white;
     display: block;
@@ -121,7 +121,7 @@ background: none;
     padding: 2px 8px;
     &:focus {
         outline: 0;
-        border: 1px solid #fff;
+        border: 2px solid #fff;
     }
 `;
 
