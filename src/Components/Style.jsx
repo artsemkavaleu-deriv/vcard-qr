@@ -80,6 +80,11 @@ const Form = styled.form`
     width: 50%;
 `;
 
+const FrameButtonsWrapper = styled.div`
+    background-color: rgba(239, 239, 239, 0.3);
+    border-radius: 5px;
+`;
+
 const Frame = styled.div`
     background-image: url('${props => props.frame}');
     background-repeat: no-repeat;
@@ -180,6 +185,7 @@ export {
     FlexContainer,
     Form,
     Frame,
+    FrameButtonsWrapper,
     H2,
     Img,
     Input,
