@@ -81,8 +81,6 @@ const App = () => {
             errors.firstName = 'Please enter your first name.';
         } else if (!values.lastName) {
             errors.lastName = 'Please enter your last name.';
-        } else if (!/(.+)@(.+){2,}\.(.+){2,}/.test(values.workEmail)) {
-            errors.workEmail = 'Please enter a valid email.';
         } else if (values.url && !/^(https?):\/\/[^\s$.?#].[^\s]*$/.test(values.url)) {
             errors.url = 'Please enter a valid website.';
         }
