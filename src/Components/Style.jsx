@@ -162,6 +162,11 @@ const ToggleButton = styled.button`
     color: #fff;
     cursor: pointer;
     padding: 10px 16px;
+    color: white;
+
+    :disabled {
+        opacity: 0.5;
+    }
 `;
 
 const Wrapper = styled.div`
@@ -169,6 +174,13 @@ const Wrapper = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
+`;
+
+const InputWrapperDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: red;
 `;
 
 export {
@@ -188,6 +200,7 @@ export {
     Img,
     Input,
     InputLabel,
+    InputWrapperDiv,
     StyledButton,
     StyledCard,
     ToggleButton,
