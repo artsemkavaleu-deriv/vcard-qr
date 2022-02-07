@@ -41,14 +41,12 @@ import Frame7 from '../Assets/qrframe7_big.svg';
 import logo from '../Assets/logo.png';
 import brand from '../Assets/brand_logo.png';
 
-const InputWrapper = ({ children, error }) => {
-    return (
-        <InputWrapperDiv>
-            {children}
-            <div>{error}</div>
-        </InputWrapperDiv>
-    );
-};
+const InputWrapper = ({ children, error }) => (
+    <InputWrapperDiv>
+        {children}
+        <div>{error}</div>
+    </InputWrapperDiv>
+);
 
 const App = () => {
     const ref = useRef(null);
@@ -79,9 +77,11 @@ const App = () => {
 
         if (!values.firstName) {
             errors.firstName = 'Please enter your first name.';
-        } else if (!values.lastName) {
+        } 
+        if (!values.lastName) {
             errors.lastName = 'Please enter your last name.';
-        } else if (values.url && !/^(https?):\/\/[^\s$.?#].[^\s]*$/.test(values.url)) {
+        } 
+        if (values.url && !/^(https?):\/\/[^\s$.?#].[^\s]*$/.test(values.url)) {
             errors.url = 'Please enter a valid website.';
         }
 
@@ -163,15 +163,15 @@ const App = () => {
                         {({ dirty, errors, handleChange, isSubmitting, isValid, touched, values }) => (
                             <Form>
                                 <H2>Create your visiting card</H2>
-                                <InputWrapper error={errors.firstName}>
+                                <InputWrapper error={touched.firstName && errors.firstName}>
                                     <Input
                                         type='text'
                                         name='firstName'
-                                        error={touched.firstName && errors.firstName}
                                         value={values.firstName}
                                         placeholder='First Name'
                                         onChange={e => {
                                             handleChange(e);
+                                            touched.firstName = true;
                                         }}
                                     />
                                 </InputWrapper>
@@ -185,15 +185,15 @@ const App = () => {
                                         handleChange(e);
                                     }}
                                 />
-                                <InputWrapper error={errors.lastName}>
+                                <InputWrapper error={touched.lastName && errors.lastName}>
                                     <Input
                                         type='text'
                                         name='lastName'
-                                        error={touched.lastName && errors.lastName}
                                         value={values.lastName}
                                         placeholder='Last name'
                                         onChange={e => {
                                             handleChange(e);
+                                            touched.lastName = true;
                                         }}
                                     />
                                 </InputWrapper>
