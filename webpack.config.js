@@ -30,6 +30,10 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'less-loader'],
             },
             {
+                test: /\.mp3$/,
+                use: ['file-loader'],
+            },
+            {
                 test: /\.(png|jpg|gif|svg)$/i,
                 use: [
                     {

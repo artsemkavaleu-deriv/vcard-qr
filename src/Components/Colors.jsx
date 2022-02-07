@@ -7,8 +7,8 @@ const BlackButton = styled.button`
     width: 20px;
 `;
 
-const RedButton = styled.button`
-    background: #f72a31;
+const BlueButton = styled.button`
+    background: #1e33f7;
     height: 20px;
     margin: 4px;
     width: 20px;
@@ -21,15 +21,15 @@ const GreenButton = styled.button`
     width: 20px;
 `;
 
-const BlueButton = styled.button`
-    background: #1e33f7;
+const OrangeButton = styled.button`
+    background: #fa9716;
     height: 20px;
     margin: 4px;
     width: 20px;
 `;
 
-const OrangeButton = styled.button`
-    background: #fa9716;
+const RedButton = styled.button`
+    background: #f72a31;
     height: 20px;
     margin: 4px;
     width: 20px;
@@ -49,4 +49,4 @@ const YellowButton = styled.button`
     width: 20px;
 `;
 
-export { BlackButton, RedButton, GreenButton, BlueButton, OrangeButton, PurpleButton, YellowButton };
+export { BlackButton, BlueButton, GreenButton, OrangeButton, RedButton, PurpleButton, YellowButton };
