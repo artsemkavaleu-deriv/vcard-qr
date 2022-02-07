@@ -24,6 +24,7 @@
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
         "eslint-webpack-plugin": "^3.1.1",
+        "file-loader": "^6.2.0",
         "html-loader": "^3.1.0",
         "html-webpack-plugin": "^5.5.0",
         "jest": "^27.4.7",
@@ -35,7 +36,6 @@
         "webpack-dev-server": "^4.7.3"
     },
     "dependencies": {
-        "file-loader": "^6.2.0",
         "formik": "^2.2.9",
         "qrcode.react": "^1.0.1",
         "react": "^17.0.2",
