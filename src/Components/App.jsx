@@ -16,7 +16,7 @@ import {
     ToggleButton,
     Wrapper,
 } from './Style';
-import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton } from './Colors';
+import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton, PurpleButton, YellowButton } from './Colors';
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
@@ -323,6 +323,8 @@ const App = () => {
                                 <GreenButton onClick={() => setColor('#1ef730')} />
                                 <BlueButton onClick={() => setColor('#1e33f7')} />
                                 <OrangeButton onClick={() => setColor('#fa9716')} />
+                                <PurpleButton onClick={() => setColor('#5b02fb')} />
+                                <YellowButton onClick={() => setColor('#e9fb02')} />
                             </div>
                         )}
                         <ToggleButton onClick={toggling3}>Logo</ToggleButton>
