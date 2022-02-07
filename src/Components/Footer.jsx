@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
     background-color: #000;
     color: #fff;
-    padding: 8px;
-    text-align: center;
     font-size: 12px;
+    text-align: center;
+    padding: 8px;
 `;
 
 const Footer = () => (

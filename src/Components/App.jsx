@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { Formik } from 'formik';
-import { formatVCard } from '../Utils/helper';
+import formatVCard from '../Utils/helper';
 import {
     ColoredButtonsWrapper,
     DownloadButtonsWrapper,
@@ -16,27 +16,27 @@ import {
     ToggleButton,
     Wrapper,
 } from './Style';
-import { BlackButton, RedButton, GreenButton, OrangeButton, BlueButton, PurpleButton, YellowButton } from './Colors';
+import { BlackButton, BlueButton, GreenButton, OrangeButton, RedButton, PurpleButton, YellowButton } from './Colors';
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
 import {
     Frame1Button,
-    Frame1,
     Frame2Button,
-    Frame2,
     Frame3Button,
-    Frame3,
     Frame4Button,
-    Frame4,
     Frame5Button,
-    Frame5,
     Frame6Button,
-    Frame6,
     Frame7Button,
-    Frame7,
     Frame8Button,
 } from './Frames';
+import Frame1 from '../Assets/qrframe1_big.svg';
+import Frame2 from '../Assets/qrframe2_big.svg';
+import Frame3 from '../Assets/qrframe3_big.svg';
+import Frame4 from '../Assets/qrframe4_big.svg';
+import Frame5 from '../Assets/qrframe5_big.svg';
+import Frame6 from '../Assets/qrframe6_big.svg';
+import Frame7 from '../Assets/qrframe7_big.svg';
 import logo from '../Assets/logo.png';
 import brand from '../Assets/brand_logo.png';
 
@@ -67,7 +67,7 @@ const App = () => {
         const errors = {};
 
         if (!values.firstName) {
-            errors.last_name = 'Please enter your first name.';
+            errors.first_name = 'Please enter your first name.';
         } else if (!values.lastName) {
             errors.last_name = 'Please enter your last name.';
         }
@@ -319,10 +319,10 @@ const App = () => {
                         {isOpen.isColorFieldOpen && (
                             <div>
                                 <BlackButton onClick={() => setColor('#080808')} />
-                                <RedButton onClick={() => setColor('#f72a31')} />
-                                <GreenButton onClick={() => setColor('#1ef730')} />
                                 <BlueButton onClick={() => setColor('#1e33f7')} />
+                                <GreenButton onClick={() => setColor('#1ef730')} />
                                 <OrangeButton onClick={() => setColor('#fa9716')} />
+                                <RedButton onClick={() => setColor('#f72a31')} />
                                 <PurpleButton onClick={() => setColor('#5b02fb')} />
                                 <YellowButton onClick={() => setColor('#e9fb02')} />
                             </div>

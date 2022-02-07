@@ -141,7 +141,6 @@ const InputLabel = styled.label`
 
 const StyledButton = styled.button`
     background: NONE;
-    // background-color: ${brand_color};
     border: 2px solid ${brand_color};
     border-radius: 4px;
     color: #fff;
@@ -160,10 +159,9 @@ const ToggleButton = styled.button`
     background-color: ${brand_color};
     border: 1px solid ${brand_color};
     border-radius: 5px;
+    color: #fff;
     cursor: pointer;
     padding: 10px 16px;
-    // color: ${brand_color};
-    color: white;
 `;
 
 const Wrapper = styled.div`
